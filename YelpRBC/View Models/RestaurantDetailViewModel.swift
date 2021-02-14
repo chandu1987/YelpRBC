@@ -18,11 +18,6 @@ class RestaurantDetailViewModel:NSObject {
         }
     }
     
-    private(set) var isLoading : Bool? {
-        didSet{
-            self.getLoadingStatus?(isLoading ?? false)
-        }
-    }
     
     var title:String{
         return restaurantDetail.name
@@ -49,7 +44,19 @@ class RestaurantDetailViewModel:NSObject {
     
     var rating:String{
             if let rating = restaurantDetail.rating {
-                return "\(rating)" +  "*"
+                
+                let fullStars = Int(modf(rating).0)
+                var starRating = ""
+                for _ in 0..<fullStars{
+                    starRating = starRating + Constants.StringConstants.kStar
+                }
+                
+                let halfStars = modf(rating).1
+                if halfStars + 0.5 == 1.0{
+                    starRating = starRating + "1/2"
+                }
+                
+                return starRating + "(\(restaurantDetail.reviewCount) reviews)"
             }
             return "No ratings yet"
     }
@@ -68,9 +75,6 @@ class RestaurantDetailViewModel:NSObject {
     //Closures
     var getrestaurantsDetailClosure : (() -> ()) = {}
     var getErrorUpdate : ((Error) -> Void)?
-    var getLoadingStatus :((Bool) -> Void)?
-    
-    
     
     //initialiser
     init(restaurantId:String){
@@ -81,13 +85,10 @@ class RestaurantDetailViewModel:NSObject {
     }
     
     //MARK: - Custom Functions
-    
     //API Call
     func getRestaurantDetail() {
-        isLoading = true
         let endPoint = GetRestaurantDetailEndPoint(path: restaurantId)
         networkManager.call(for: endPoint) { (result) in
-            self.isLoading = false
             switch(result){
             case .success(let restaurantDetail):
                 self.restaurantDetail = restaurantDetail

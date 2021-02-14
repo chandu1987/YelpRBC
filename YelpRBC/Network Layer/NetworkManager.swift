@@ -46,6 +46,9 @@ class NetworkManager  {
                 return
             }
             
+            if urlResponse == nil{
+                fatalError()
+            }
             
             // Check response code.
             guard let httpResponse = urlResponse as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
@@ -55,8 +58,7 @@ class NetworkManager  {
             
             
             guard let data = data else {
-                let error = NSError(domain: "InvalidDataError", code: 0, userInfo: nil)
-                completion(.failure(error))
+                completion(.failure(NetworkError.parsingError))
                 return
             }
             

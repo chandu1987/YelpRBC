@@ -25,9 +25,9 @@ class RestaurantDetailViewController: UIViewController {
     @IBOutlet weak var subView:UIView!
     @IBOutlet weak var contentView:UIView!
     @IBOutlet weak var photosCollectionView:UICollectionView!
+    @IBOutlet weak var scrollView:UIScrollView!
 
-    
-        
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -38,7 +38,6 @@ class RestaurantDetailViewController: UIViewController {
         super.init(coder: coder)
       }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.restaurantDetailViewModel = RestaurantDetailViewModel(restaurantId:self.restaurantId)
@@ -47,17 +46,14 @@ class RestaurantDetailViewController: UIViewController {
     }
     
     func setupUI(){
-        
         statusButton.layer.cornerRadius = 20.0
         cuisineButton.layer.cornerRadius = 20.0
-    
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         contentView.layer.cornerRadius = 10.0
         contentView.clipsToBounds = true
-        
         subView.layer.masksToBounds = false
         subView.layer.shadowColor = UIColor.black.cgColor
         subView.layer.shadowOffset = .zero
@@ -65,10 +61,6 @@ class RestaurantDetailViewController: UIViewController {
         subView.layer.shadowRadius = 10
         let shadowPath = UIBezierPath(rect: subView.bounds)
         subView.layer.shadowPath = shadowPath.cgPath
-     
-        
-        
-       
     }
     
     
@@ -83,7 +75,7 @@ class RestaurantDetailViewController: UIViewController {
     
     func updateUI(){
         restaurantImageView.loadImage(at: self.restaurantDetailViewModel.imageUrl)
-        ratingLabel.text = "\u{2BEA}"
+        ratingLabel.text = self.restaurantDetailViewModel.rating
         restaurantNameLabel.text = self.restaurantDetailViewModel.title
         addressLabel.text = self.restaurantDetailViewModel.address
         phoneNumberLabel.text = self.restaurantDetailViewModel.phoneNumber
@@ -93,9 +85,6 @@ class RestaurantDetailViewController: UIViewController {
         }else{
             cuisineButton.isHidden = true
         }
-        
-        
-        
         photosCollectionView.reloadData()
     }
 

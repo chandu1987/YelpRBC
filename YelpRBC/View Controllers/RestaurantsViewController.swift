@@ -10,14 +10,18 @@ import UIKit
 class RestaurantsViewController: UIViewController {
     //MARK:- Properties
     private var restaurantsViewModel : RestaurantsViewModel!
+
     
+    //MARK:- IBOutlets
     @IBOutlet weak var restaurantCollectionView:UICollectionView!
     @IBOutlet weak var searchBar:UISearchBar!
 
     
     lazy var activityIndicator:UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.hidesWhenStopped = true
+        activityIndicator.tintColor = .white
+        activityIndicator.color = .white
         return activityIndicator
     }()
     
@@ -33,17 +37,14 @@ class RestaurantsViewController: UIViewController {
     
     
     func setupUI(){
-        
+                
         //Add a title
         self.title = NSLocalizedString("Restaurants", comment: "Restaurants")
         
-        //Add activity indicator to navigation bar
+        //Setup activity indicator and add as a right bar button item.
         let refreshBarButton: UIBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         self.navigationItem.rightBarButtonItem = refreshBarButton
-        
-        //Add Sort Image to Navigation Bar
-        let sortButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_sort"), style: .plain, target: self, action: #selector(showSortOptions))
-        self.navigationItem.leftBarButtonItem = sortButton
+
         
         //Add a search bar
         if #available(iOS 13.0, *) {
@@ -55,19 +56,10 @@ class RestaurantsViewController: UIViewController {
     
     
     func getRestaurantsList(){
+        self.activityIndicator.startAnimating()
+      
         //Initialise
         restaurantsViewModel = RestaurantsViewModel()
-        
-        //get the loading status from view model
-        restaurantsViewModel.getLoadingStatus = {[weak self] isLoading in
-            DispatchQueue.main.async {
-                if isLoading == true{
-                    self?.activityIndicator.startAnimating()
-                }else{
-                    self?.activityIndicator.stopAnimating()
-                }
-            }
-        }
         
         //get the list of restaurants and show in a colelctionView
         restaurantsViewModel.getrestaurantsDataClosure = {
@@ -98,7 +90,7 @@ class RestaurantsViewController: UIViewController {
     }
     
     //MARK:- Custom functions
-    @objc  func showSortOptions(){
+    @IBAction  func showSortOptions(){
           //display the AlertController which shows the sort options
           let sortOptionsAlert: UIAlertController = UIAlertController(title: "Sort by", message: "Please select a sort option", preferredStyle: .actionSheet)
           let sortByDistanceAction = UIAlertAction(title: "Distance", style: .default) { _ in

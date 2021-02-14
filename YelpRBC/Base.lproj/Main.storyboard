@@ -15,7 +15,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="RestaurantsViewController" customModule="YelpRBC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vZt-Vo-g2O">
@@ -37,9 +37,11 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GMY-RI-gxk">
                                                     <rect key="frame" x="0.0" y="0.0" width="169" height="164"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="dishImage"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="whk-J2-RVQ">
                                                     <rect key="frame" x="2" y="135" width="165" height="21"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="dishTitle"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="qXg-ly-feD"/>
                                                     </constraints>
@@ -47,11 +49,13 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.5*" textAlignment="natural" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="9TE-dD-llI">
-                                                    <rect key="frame" x="127" y="10" width="32" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.5*" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9TE-dD-llI">
+                                                    <rect key="frame" x="123" y="10" width="36" height="36"/>
+                                                    <color key="backgroundColor" red="0.89019607840000003" green="0.61176470589999998" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <accessibility key="accessibilityConfiguration" label="dishRating"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="9gl-Eq-KzN"/>
-                                                        <constraint firstAttribute="width" constant="32" id="rM1-BZ-ea1"/>
+                                                        <constraint firstAttribute="height" constant="36" id="9gl-Eq-KzN"/>
+                                                        <constraint firstAttribute="width" constant="36" id="rM1-BZ-ea1"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -112,6 +116,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="DzO-X6-omH">
                         <barButtonItem key="backBarButtonItem" title=" " id="6gB-S0-YvM"/>
+                        <barButtonItem key="leftBarButtonItem" image="ic_sort" id="7e1-nw-I6k">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="showSortOptions" destination="BYZ-38-t0r" id="SFN-HA-se0"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="restaurantCollectionView" destination="vZt-Vo-g2O" id="NqE-nL-N7A"/>
@@ -128,26 +138,28 @@
             <objects>
                 <viewController id="xN0-j8-YRy" customClass="RestaurantDetailViewController" customModule="YelpRBC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l1c-Bd-A7F">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRB-dp-Qza">
-                                <rect key="frame" x="20" y="50" width="374" height="674"/>
+                                <rect key="frame" x="20" y="35" width="374" height="689"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4O-4g-GMT">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="674"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="689"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyB-e2-4kL">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="674"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="689"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="348s.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="qQO-Ug-Deb">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="200"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="detailDishImage"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="200" id="gfx-k2-ZvJ"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fF-Aa-UZU">
-                                                        <rect key="frame" x="20" y="220" width="334" height="21"/>
+                                                        <rect key="frame" x="20" y="208" width="334" height="21"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="detailDishRating"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="ccI-sE-3if"/>
                                                         </constraints>
@@ -156,7 +168,8 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C34-LX-0uE">
-                                                        <rect key="frame" x="20" y="249" width="334" height="30"/>
+                                                        <rect key="frame" x="20" y="237" width="334" height="30"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="detailTitle"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="95q-qg-31C"/>
                                                         </constraints>
@@ -165,7 +178,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wcO-jy-MYK">
-                                                        <rect key="frame" x="20" y="294" width="334" height="80"/>
+                                                        <rect key="frame" x="20" y="282" width="334" height="80"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8JJ-r4-8Wo">
                                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
@@ -180,6 +193,7 @@
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hR2-5J-8f3">
                                                                         <rect key="frame" x="38" y="9.5" width="292" height="21"/>
+                                                                        <accessibility key="accessibilityConfiguration" identifier="detailAddress"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="etG-pg-UZc"/>
                                                                         </constraints>
@@ -210,6 +224,7 @@
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBD-Q9-m80">
                                                                         <rect key="frame" x="38" y="9.5" width="292" height="21"/>
+                                                                        <accessibility key="accessibilityConfiguration" identifier="detailPhoneNumber"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="gEJ-Vw-C4S"/>
                                                                         </constraints>
@@ -233,7 +248,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1r-HD-cBx">
-                                                        <rect key="frame" x="20" y="389" width="334" height="2"/>
+                                                        <rect key="frame" x="20" y="377" width="334" height="2"/>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="2" id="P74-Cf-kG7"/>
@@ -243,7 +258,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7P-vt-l82">
-                                                        <rect key="frame" x="20" y="463" width="334" height="2"/>
+                                                        <rect key="frame" x="20" y="451" width="334" height="2"/>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="2" id="nn8-ff-nVw"/>
@@ -253,11 +268,12 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vPY-pO-gHz">
-                                                        <rect key="frame" x="69" y="406" width="236" height="42"/>
+                                                        <rect key="frame" x="69" y="394" width="236" height="42"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPd-oA-U7s">
                                                                 <rect key="frame" x="0.0" y="0.0" width="113" height="42"/>
                                                                 <color key="backgroundColor" red="0.8901960784313725" green="0.61176470588235299" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="detailCuisineButton"/>
                                                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="14"/>
                                                                 <state key="normal">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -266,6 +282,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lzx-bh-5ZZ">
                                                                 <rect key="frame" x="123" y="0.0" width="113" height="42"/>
                                                                 <color key="backgroundColor" red="0.8901960784313725" green="0.61176470588235299" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="detailStatus"/>
                                                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="14"/>
                                                                 <state key="normal">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -278,7 +295,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Vf-Qr-KYv">
-                                                        <rect key="frame" x="20" y="480" width="354" height="128"/>
+                                                        <rect key="frame" x="20" y="468" width="354" height="128"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="128" id="WJ5-Xm-RBp"/>
@@ -299,6 +316,7 @@
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TeM-Gb-eel">
                                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                                            <accessibility key="accessibilityConfiguration" identifier="detailCellUserImage"/>
                                                                         </imageView>
                                                                     </subviews>
                                                                     <constraints>
@@ -341,8 +359,8 @@
                                                     <constraint firstItem="C34-LX-0uE" firstAttribute="leading" secondItem="5fF-Aa-UZU" secondAttribute="leading" id="ay4-H1-pVX"/>
                                                     <constraint firstItem="qQO-Ug-Deb" firstAttribute="top" secondItem="vyB-e2-4kL" secondAttribute="top" id="bZl-5B-Jsv"/>
                                                     <constraint firstItem="x1r-HD-cBx" firstAttribute="trailing" secondItem="C34-LX-0uE" secondAttribute="trailing" id="fMg-7i-Rko"/>
-                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4Vf-Qr-KYv" secondAttribute="bottom" id="fgs-xE-8YE"/>
-                                                    <constraint firstItem="5fF-Aa-UZU" firstAttribute="top" secondItem="qQO-Ug-Deb" secondAttribute="bottom" constant="20" id="pEe-I6-Wpu"/>
+                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4Vf-Qr-KYv" secondAttribute="bottom" constant="8" id="fgs-xE-8YE"/>
+                                                    <constraint firstItem="5fF-Aa-UZU" firstAttribute="top" secondItem="qQO-Ug-Deb" secondAttribute="bottom" constant="8" id="pEe-I6-Wpu"/>
                                                     <constraint firstItem="G7P-vt-l82" firstAttribute="trailing" secondItem="x1r-HD-cBx" secondAttribute="trailing" id="qIX-07-W8s"/>
                                                     <constraint firstAttribute="trailing" secondItem="qQO-Ug-Deb" secondAttribute="trailing" id="tl1-aL-hnk"/>
                                                 </constraints>
@@ -378,7 +396,7 @@
                         <viewLayoutGuide key="safeArea" id="Zhp-bg-mGI"/>
                         <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="bRB-dp-Qza" firstAttribute="top" secondItem="Zhp-bg-mGI" secondAttribute="top" constant="50" id="P2R-kc-PI6"/>
+                            <constraint firstItem="bRB-dp-Qza" firstAttribute="top" secondItem="Zhp-bg-mGI" secondAttribute="top" constant="35" id="P2R-kc-PI6"/>
                             <constraint firstItem="bRB-dp-Qza" firstAttribute="leading" secondItem="Zhp-bg-mGI" secondAttribute="leading" constant="20" id="W3Q-T1-iAI"/>
                             <constraint firstItem="Zhp-bg-mGI" firstAttribute="bottom" secondItem="bRB-dp-Qza" secondAttribute="bottom" constant="50" id="fSF-IJ-JPf"/>
                             <constraint firstItem="Zhp-bg-mGI" firstAttribute="trailing" secondItem="bRB-dp-Qza" secondAttribute="trailing" constant="20" id="xgo-tN-8Gg"/>
@@ -394,6 +412,7 @@
                         <outlet property="ratingLabel" destination="5fF-Aa-UZU" id="LzD-TM-OQJ"/>
                         <outlet property="restaurantImageView" destination="qQO-Ug-Deb" id="JzR-XK-A8L"/>
                         <outlet property="restaurantNameLabel" destination="C34-LX-0uE" id="q0Q-1h-blI"/>
+                        <outlet property="scrollView" destination="A4O-4g-GMT" id="xqF-af-tLG"/>
                         <outlet property="statusButton" destination="lzx-bh-5ZZ" id="k9j-aX-Yhb"/>
                         <outlet property="subView" destination="bRB-dp-Qza" id="Tyn-rg-kKl"/>
                     </connections>
@@ -428,6 +447,7 @@
     </scenes>
     <resources>
         <image name="348s.jpg" width="348" height="348"/>
+        <image name="ic_sort" width="22" height="22"/>
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <image name="phone" catalog="system" width="128" height="115"/>
         <namedColor name="BackgroundColor">

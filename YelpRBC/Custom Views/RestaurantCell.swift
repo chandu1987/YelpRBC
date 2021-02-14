@@ -23,7 +23,7 @@ class RestaurantCell: UICollectionViewCell {
             }
             
             restaurantName.text = restaurant?.name
-            rating.text = "\(restaurant?.rating ?? 0)" + "*"
+            rating.text = "\(restaurant?.rating ?? 0)" + Constants.StringConstants.kStar
        
         }
     }
@@ -31,7 +31,8 @@ class RestaurantCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         restaurantName.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-
+        rating.layer.masksToBounds = true
+        rating.layer.cornerRadius = rating.frame.size.width/2
     }
     
 

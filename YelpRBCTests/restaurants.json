@@ -1,0 +1,50 @@
+{
+    "businesses": [
+        {
+            "id": "B70iTJjcPkuYn8ouUewWgw",
+            "alias": "gusto-101-toronto",
+            "name": "Gusto 101",
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/AR6GLQy04dety7i4ffTH-g/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/gusto-101-toronto?adjust_creative=0y7DIhRcQzq45fI_GZiT8g&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=0y7DIhRcQzq45fI_GZiT8g",
+            "review_count": 988,
+            "categories": [
+                {
+                    "alias": "italian",
+                    "title": "Italian"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 43.645002131066,
+                "longitude": -79.400309337027
+            },
+            "transactions": [],
+            "price": "$$",
+            "location": {
+                "address1": "101 Portland Street",
+                "address2": "",
+                "address3": "",
+                "city": "Toronto",
+                "zip_code": "M5V 2N3",
+                "country": "CA",
+                "state": "ON",
+                "display_address": [
+                    "101 Portland Street",
+                    "Toronto, ON M5V 2N3",
+                    "Canada"
+                ]
+            },
+            "phone": "+14165049669",
+            "display_phone": "+1 416-504-9669",
+            "distance": 3470.631293087875
+        }
+    ],
+    "total": 622,
+    "region": {
+        "center": {
+            "longitude": -79.37175814481495,
+            "latitude": 43.668401057212016
+        }
+    }
+}

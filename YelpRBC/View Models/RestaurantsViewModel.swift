@@ -23,13 +23,7 @@ class RestaurantsViewModel:NSObject {
             self.getrestaurantsDataClosure()
         }
     }
-    
-    private(set) var isLoading : Bool? {
-        didSet{
-            self.getLoadingStatus?(isLoading ?? false)
-        }
-    }
-    
+        
     var numberOfRestaurants :Int {
         guard self.restaurants != nil else{
             return 0
@@ -41,7 +35,6 @@ class RestaurantsViewModel:NSObject {
     //Closures
     var getrestaurantsDataClosure : (() -> ()) = {}
     var getErrorUpdate : ((Error) -> Void)?
-    var getLoadingStatus :((Bool) -> Void)?
 
     override init() {
         super.init()
@@ -53,9 +46,7 @@ class RestaurantsViewModel:NSObject {
     //MARK: - Custom Functions
     //API Call
     func getRestaurantsList() {
-        isLoading = true
         networkManager.call(for: GetRestaurantsEndpoint()) { (result) in
-            self.isLoading = false
             switch(result){
             case .success(let business):
                 self.allRestaurants = business.restaurants

@@ -35,6 +35,10 @@
 		2C301DE825D4E7440017CAA9 /* RestaurantDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C301DE725D4E7440017CAA9 /* RestaurantDetailViewModel.swift */; };
 		2CB55E7925D8971400EFDA74 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB55E7825D8971400EFDA74 /* ImageLoader.swift */; };
 		2CB55E7E25D8978E00EFDA74 /* UIImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB55E7D25D8978E00EFDA74 /* UIImageLoader.swift */; };
+		2CB55E8825D96F8300EFDA74 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB55E8725D96F8300EFDA74 /* NetworkTests.swift */; };
+		2CB55E9125D9711E00EFDA74 /* restaurants.json in Resources */ = {isa = PBXBuildFile; fileRef = 2CB55E8C25D9711400EFDA74 /* restaurants.json */; };
+		2CB55E9B25D975D600EFDA74 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB55E8225D8D46700EFDA74 /* URLProtocolMock.swift */; };
+		2CB55EA025D97B2C00EFDA74 /* BaseUITestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB55E9F25D97B2C00EFDA74 /* BaseUITestClass.swift */; };
 		2CF0AA4F25D637C100B46447 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0AA4E25D637C000B46447 /* RestaurantDetailViewController.swift */; };
 		2CF6AED325D76C8A002A5415 /* RestauranDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6AED225D76C8A002A5415 /* RestauranDetail.swift */; };
 		2CF6AED825D7797C002A5415 /* DishCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6AED725D7797C002A5415 /* DishCell.swift */; };
@@ -92,6 +96,10 @@
 		2C301DE725D4E7440017CAA9 /* RestaurantDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewModel.swift; sourceTree = "<group>"; };
 		2CB55E7825D8971400EFDA74 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		2CB55E7D25D8978E00EFDA74 /* UIImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageLoader.swift; sourceTree = "<group>"; };
+		2CB55E8225D8D46700EFDA74 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
+		2CB55E8725D96F8300EFDA74 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
+		2CB55E8C25D9711400EFDA74 /* restaurants.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = restaurants.json; sourceTree = "<group>"; };
+		2CB55E9F25D97B2C00EFDA74 /* BaseUITestClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITestClass.swift; sourceTree = "<group>"; };
 		2CF0AA4E25D637C000B46447 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		2CF6AED225D76C8A002A5415 /* RestauranDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestauranDetail.swift; sourceTree = "<group>"; };
 		2CF6AED725D7797C002A5415 /* DishCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCell.swift; sourceTree = "<group>"; };
@@ -153,13 +161,13 @@
 				2C11D53E25D87E7C0075F92E /* o.jpg */,
 				2C301D6425D480D00017CAA9 /* AppDelegate.swift */,
 				2C301D6625D480D00017CAA9 /* SceneDelegate.swift */,
+				2C301DA025D4870A0017CAA9 /* View Controllers */,
+				2C301DA425D4871D0017CAA9 /* View Models */,
 				2C301DA925D4876C0017CAA9 /* Models */,
 				2C301DA825D4875F0017CAA9 /* Custom Views */,
 				2C301DA725D487530017CAA9 /* Network Layer */,
 				2C301DA625D4873A0017CAA9 /* Common */,
 				2C301DA525D487280017CAA9 /* Extensions */,
-				2C301DA425D4871D0017CAA9 /* View Models */,
-				2C301DA025D4870A0017CAA9 /* View Controllers */,
 				2C301D6A25D480D00017CAA9 /* Main.storyboard */,
 				2C301D7025D480D50017CAA9 /* Assets.xcassets */,
 				2C301D7225D480D50017CAA9 /* LaunchScreen.storyboard */,
@@ -172,7 +180,9 @@
 		2C301D7D25D480D60017CAA9 /* YelpRBCTests */ = {
 			isa = PBXGroup;
 			children = (
+				2CB55E8C25D9711400EFDA74 /* restaurants.json */,
 				2C301D7E25D480D60017CAA9 /* YelpRBCTests.swift */,
+				2CB55E8725D96F8300EFDA74 /* NetworkTests.swift */,
 				2C301D8025D480D60017CAA9 /* Info.plist */,
 			);
 			path = YelpRBCTests;
@@ -181,6 +191,7 @@
 		2C301D8825D480D60017CAA9 /* YelpRBCUITests */ = {
 			isa = PBXGroup;
 			children = (
+				2CB55E9F25D97B2C00EFDA74 /* BaseUITestClass.swift */,
 				2C301D8925D480D60017CAA9 /* YelpRBCUITests.swift */,
 				2C301D8B25D480D60017CAA9 /* Info.plist */,
 			);
@@ -217,6 +228,7 @@
 		2C301DA625D4873A0017CAA9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2CB55E8225D8D46700EFDA74 /* URLProtocolMock.swift */,
 				2C301DB725D48B160017CAA9 /* Constants.swift */,
 			);
 			path = Common;
@@ -380,6 +392,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CB55E9125D9711E00EFDA74 /* restaurants.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +429,7 @@
 				2C301DE325D4E6410017CAA9 /* GetRestaurantDetailEndPoint.swift in Sources */,
 				2C301DAB25D4885A0017CAA9 /* Business.swift in Sources */,
 				2CF6AED825D7797C002A5415 /* DishCell.swift in Sources */,
+				2CB55E9B25D975D600EFDA74 /* URLProtocolMock.swift in Sources */,
 				2C301D6725D480D00017CAA9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CB55E8825D96F8300EFDA74 /* NetworkTests.swift in Sources */,
 				2C301D7F25D480D60017CAA9 /* YelpRBCTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,6 +448,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C301D8A25D480D60017CAA9 /* YelpRBCUITests.swift in Sources */,
+				2CB55EA025D97B2C00EFDA74 /* BaseUITestClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

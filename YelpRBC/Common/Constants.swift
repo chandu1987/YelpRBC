@@ -31,6 +31,11 @@ struct Constants{
         static let kYelpAPIKey = "Bearer tfNnH1xnlzeAXrAdssQ8eEb3jxnlQpgaXuUfLlGc08VEAiLSnuOhprUHJ0ewtRfZVTf47VZJAj9oR2ZfsZqBCf4f07DslExZPnGtDIISXp4JeD8bb9kaze0aACQjYHYx"
     }
 
+    //String
+    
+    struct StringConstants {
+        static let kStar = "\u{2605}"
+    }
     
     
 }

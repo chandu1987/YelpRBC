@@ -7,36 +7,109 @@
 
 import XCTest
 
-class YelpRBCUITests: XCTestCase {
+class YelpRBCUITests: BaseUITestClass {
+    
+    func testUIForHome(){
+        
+        //Check if the collection view exists
+        let resturantsListCollectionView = app.collectionViews.firstMatch
+        XCTAssertTrue(resturantsListCollectionView.exists, "Collection view does not exist")
+        
+        //Check if cells exist
+        let cell = resturantsListCollectionView.cells.firstMatch
+        _ = cell.waitForExistence(timeout: 3.0)
+        XCTAssertTrue(cell.exists)
+        
+        //check subviews
+        XCTAssertTrue(cell.images["dishImage"].exists)
+        XCTAssertEqual(cell.images.count, 1)
+        
+        XCTAssertTrue(cell.staticTexts["dishTitle"].exists)
+        XCTAssertTrue(cell.staticTexts["dishRating"].exists)
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        //check if search bar exists
+        XCTAssertTrue(app.otherElements.searchFields.firstMatch.exists)
+        
+        //check navbar exists
+        let navBar = app.navigationBars.firstMatch
+        let restaurants = navBar.staticTexts.firstMatch
+        XCTAssertEqual(restaurants.label, "Restaurants")
+        
+        let sortButton = navBar.buttons.firstMatch
+        XCTAssertTrue(sortButton.exists)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    
+    func testUIForDetailScreen(){
+        
+        //Check if the collection view exists
+        let resturantsListCollectionView = app.collectionViews.firstMatch
+        XCTAssertTrue(resturantsListCollectionView.exists, "Collection view does not exist")
+        
+        //Check if cells exist
+        let cell = resturantsListCollectionView.cells.firstMatch
+        _ = cell.waitForExistence(timeout: 3.0)
+        XCTAssertTrue(cell.exists)
+        
+        //tap cell
+        cell.tap()
+        
+        //check subviews
+        let navBar = app.navigationBars.firstMatch
+        let restaurants = navBar.staticTexts.firstMatch
+        XCTAssertEqual(restaurants.label, "DETAIL")
+        
+        XCTAssertTrue(app.images["detailDishImage"].exists)
+        XCTAssertTrue(app.staticTexts["detailDishRating"].exists)
+        XCTAssertTrue(app.staticTexts["detailAddress"].exists)
+        XCTAssertTrue(app.staticTexts["detailPhoneNumber"].exists)
+        XCTAssertTrue(app.buttons["detailCuisineButton"].exists)
+        XCTAssertTrue(app.buttons["detailStatus"].exists)
+        XCTAssertTrue(app.collectionViews.firstMatch.exists)
     }
+    
+    
+    
+    func testFunctionality(){
+        
+        //Check if the collection view exists
+        let resturantsListCollectionView = app.collectionViews.firstMatch
+        XCTAssertTrue(resturantsListCollectionView.exists, "Collection view does not exist")
+        
+        //Check if cells exist
+        let cell = resturantsListCollectionView.cells.firstMatch
+        _ = cell.waitForExistence(timeout: 3.0)
+        XCTAssertTrue(cell.exists)
+        
+        //get cells title
+        let restaurantTitle = cell.staticTexts["dishTitle"]
+        let label = restaurantTitle.label
+        XCTAssertTrue(restaurantTitle.exists)
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
+        
+        //tap cell
+        cell.tap()
+        
+        //check for title label
+        let detailTitle = app.staticTexts["detailTitle"].firstMatch
+        XCTAssertTrue(detailTitle.exists)
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        //check if the titles match
+        let titleExpectation = waiterResultWithXCTCheckValueIsEqual(detailTitle, expectedText: label)
+        XCTAssertTrue(titleExpectation == .completed)
+            
+        
     }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    
+    func waiterResultWithXCTCheckValueIsEqual(_ element: XCUIElement, expectedText: String) -> XCTWaiter.Result {
+        let myPredicate = NSPredicate(format: "label == '\(expectedText)'")
+        let myExpectation = XCTNSPredicateExpectation(predicate: myPredicate,
+                                                      object: element)
+        let result = XCTWaiter().wait(for: [myExpectation], timeout: 60)
+        return result
     }
+    
+
+   
 }
