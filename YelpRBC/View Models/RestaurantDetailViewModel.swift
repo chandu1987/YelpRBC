@@ -24,6 +24,47 @@ class RestaurantDetailViewModel:NSObject {
         }
     }
     
+    var title:String{
+        return restaurantDetail.name
+    }
+    
+    var isOpen:String{
+        if restaurantDetail.isClosed == true{
+            return "CLOSED"
+        }else{
+            return "OPEN"
+        }
+    }
+    
+    var cuisine:String?{
+        if let category =  restaurantDetail.categories.first{
+            return category.title.uppercased()
+        }
+        return nil
+    }
+    
+    var imageUrl:URL{
+        return URL(string: restaurantDetail.imageURL)!
+    }
+    
+    var rating:String{
+            if let rating = restaurantDetail.rating {
+                return "\(rating)" +  "*"
+            }
+            return "No ratings yet"
+    }
+    
+    var address:String{
+            if let location = restaurantDetail.location{
+                return (location.address1 ?? "") + " " + location.zipCode
+            }
+            return "No Address mentioned."
+    }
+    
+    var phoneNumber:String{
+        return restaurantDetail.displayPhone
+    }
+    
     //Closures
     var getrestaurantsDetailClosure : (() -> ()) = {}
     var getErrorUpdate : ((Error) -> Void)?
@@ -56,33 +97,7 @@ class RestaurantDetailViewModel:NSObject {
         }
     }
     
-    func getRestaurantImage() -> URL {
-        return URL(string: restaurantDetail.imageURL)!
-    }
-    
-    func getRestaurantName() -> String{
-        return restaurantDetail.name
-    }
-    
-    func getRestaurantRating() -> String{
-        if let rating = restaurantDetail.rating {
-            return "\(rating)" +  "*"
-        }
-        return "No ratings yet"
-    }
-    
-    func getRestaurantAddress() -> String {
-        
-        if let location = restaurantDetail.location{
-            return location.address1 ?? "" + location.zipCode
-        }
-        return "No Address mentioned."
-    }
-    
-    func getPhoneNumber() -> String {
-        return restaurantDetail.displayPhone
-    }
-    
+
     func getPhotosCount() -> Int {
         
         

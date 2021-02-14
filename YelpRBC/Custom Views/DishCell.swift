@@ -13,13 +13,16 @@ class DishCell: UICollectionViewCell {
     
     var dishImageUrl: String? {
         didSet{
-            
             if  dishImageUrl != nil{
-                dishImage.load(url: URL(string: dishImageUrl!)!)
+                dishImage.loadImage(at: URL(string: dishImageUrl!)!)
             }
-        
-       
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        dishImage.image = nil
+        dishImage.cancelImageLoad()
     }
 
     

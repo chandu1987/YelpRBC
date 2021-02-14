@@ -20,7 +20,10 @@ class RestaurantDetailViewController: UIViewController {
     @IBOutlet weak var ratingLabel:UILabel!
     @IBOutlet weak var addressLabel:UILabel!
     @IBOutlet weak var phoneNumberLabel:UILabel!
+    @IBOutlet weak var statusButton:UIButton!
+    @IBOutlet weak var cuisineButton:UIButton!
     @IBOutlet weak var subView:UIView!
+    @IBOutlet weak var contentView:UIView!
     @IBOutlet weak var photosCollectionView:UICollectionView!
 
     
@@ -44,8 +47,32 @@ class RestaurantDetailViewController: UIViewController {
     }
     
     func setupUI(){
-        subView.layer.cornerRadius = 10.0
-        subView.clipsToBounds = true
+        
+        statusButton.layer.cornerRadius = 20.0
+        cuisineButton.layer.cornerRadius = 20.0
+        
+        contentView.layer.cornerRadius = 10.0
+        contentView.clipsToBounds = true
+        
+        subView.layer.masksToBounds = false
+        subView.layer.shadowColor = UIColor.black.cgColor
+        subView.layer.shadowOffset = .zero
+        subView.layer.shadowOpacity = 1
+        subView.layer.shadowRadius = 10
+        let shadowPath = UIBezierPath(rect: subView.bounds)
+        subView.layer.shadowPath = shadowPath.cgPath
+        
+  
+ 
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+     
+        
+        
+       
     }
     
     
@@ -59,11 +86,20 @@ class RestaurantDetailViewController: UIViewController {
     
     
     func updateUI(){
-        restaurantImageView.load(url: self.restaurantDetailViewModel.getRestaurantImage())
-        restaurantNameLabel.text = self.restaurantDetailViewModel.getRestaurantName()
-        ratingLabel.text = self.restaurantDetailViewModel.getRestaurantRating()
-        addressLabel.text = self.restaurantDetailViewModel.getRestaurantAddress()
-        phoneNumberLabel.text = self.restaurantDetailViewModel.getPhoneNumber()
+        restaurantImageView.loadImage(at: self.restaurantDetailViewModel.imageUrl)
+        ratingLabel.text = "\u{2BEA}"
+        restaurantNameLabel.text = self.restaurantDetailViewModel.title
+        addressLabel.text = self.restaurantDetailViewModel.address
+        phoneNumberLabel.text = self.restaurantDetailViewModel.phoneNumber
+        statusButton.setTitle(self.restaurantDetailViewModel.isOpen, for: .normal)
+        if let cuisine = self.restaurantDetailViewModel.cuisine{
+            cuisineButton.setTitle(cuisine, for: .normal)
+        }else{
+            cuisineButton.isHidden = true
+        }
+        
+        
+        
         photosCollectionView.reloadData()
     }
 

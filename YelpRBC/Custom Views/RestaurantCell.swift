@@ -19,7 +19,7 @@ class RestaurantCell: UICollectionViewCell {
         didSet{
             
             if let coverImage = restaurant?.imageURL{
-                restaurantImage.load(url: URL(string: coverImage)!)
+                restaurantImage.loadImage(at: URL(string: coverImage)!)
             }
             
             restaurantName.text = restaurant?.name
@@ -39,6 +39,7 @@ class RestaurantCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         restaurantImage.image = nil
+        restaurantImage.cancelImageLoad()
         restaurantName.text = ""
         rating.text = ""
     }
@@ -46,16 +47,16 @@ class RestaurantCell: UICollectionViewCell {
 }
 
 
-extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
-        }
-    }
-}
+//extension UIImageView {
+//    func load(url: URL) {
+//        DispatchQueue.global().async { [weak self] in
+//            if let data = try? Data(contentsOf: url) {
+//                if let image = UIImage(data: data) {
+//                    DispatchQueue.main.async {
+//                        self?.image = image
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}

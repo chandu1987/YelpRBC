@@ -7,11 +7,16 @@
 
 import Foundation
 
+enum Sorting {
+    case Distance
+    case Name
+    case Rating
+}
+
 class RestaurantsViewModel:NSObject {
     //MARK : - Properties
     private var networkManager:NetworkManager!
     private var isSearching = false
-    private var filteredRestaurants:[Restaurant]!
     private var allRestaurants:[Restaurant]!
     private(set) var restaurants : [Restaurant]! {
         didSet{
@@ -28,10 +33,6 @@ class RestaurantsViewModel:NSObject {
     var numberOfRestaurants :Int {
         guard self.restaurants != nil else{
             return 0
-        }
-        
-        if isSearching{
-            return filteredRestaurants.count
         }
         
         return self.restaurants.count
@@ -57,13 +58,16 @@ class RestaurantsViewModel:NSObject {
             self.isLoading = false
             switch(result){
             case .success(let business):
-                self.restaurants = business.restaurants
+                self.allRestaurants = business.restaurants
+                self.restaurants = self.allRestaurants
             case .failure(let error):
                 self.getErrorUpdate?(error)
             }
         }
     }
     
+    
+    //get id for the restaurant to get the detail
     func getRestaurantId(_ index:Int) -> String {
         let restaurant = getRestaurantAtIndex(index)
         return restaurant.id
@@ -74,10 +78,28 @@ class RestaurantsViewModel:NSObject {
         return restaurants[index]
     }
     
+    //sort functionality
+    func sortRestaurants(sortOptions:Sorting){
+        switch sortOptions{
+        case .Name:
+            self.restaurants =  self.allRestaurants.sorted(by: {$0.name < $1.name})
+        case .Distance:
+            self.restaurants =  self.allRestaurants.sorted(by: {$0.distance ?? 0.0 < $1.distance ?? 0.0})
+        case .Rating:
+            self.restaurants =  self.allRestaurants.sorted(by: {$0.rating ?? 0.0 > $1.rating ?? 0.0})
+        }
+    }
+    
     //search functionality
     func searchForRestaurant(restaurant:String){
-        let filteredResults = self.restaurants.filter{($0.name.range(of: restaurant, options: .caseInsensitive) != nil)}
-        self.restaurants = filteredResults
+        if restaurant.count > 0{
+            isSearching = true
+            let filteredResults = self.allRestaurants.filter{($0.name.range(of: restaurant, options: .caseInsensitive) != nil)}
+            self.restaurants = filteredResults
+        }else{
+            isSearching = false
+            self.restaurants = allRestaurants
+        }
     }
     
 
