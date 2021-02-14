@@ -12,16 +12,8 @@ class RestaurantsViewController: UIViewController {
     private var restaurantsViewModel : RestaurantsViewModel!
     
     @IBOutlet weak var restaurantCollectionView:UICollectionView!
-    
-    lazy var searchBar:UISearchBar = {
-        let searchBar = UISearchBar(frame: .zero)
-        searchBar.placeholder = "Search"
-        if #available(iOS 13.0, *) {
-            searchBar.searchTextField.textColor = .white
-        }
-        searchBar.tintColor = UIColor.white
-        return searchBar
-    }()
+    @IBOutlet weak var searchBar:UISearchBar!
+
     
     lazy var activityIndicator:UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .medium)
@@ -54,9 +46,9 @@ class RestaurantsViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = sortButton
         
         //Add a search bar
-        self.navigationItem.titleView = searchBar
-        searchBar.delegate = self
-        
+        if #available(iOS 13.0, *) {
+            searchBar.searchTextField.textColor = .white
+        }
     }
     
   

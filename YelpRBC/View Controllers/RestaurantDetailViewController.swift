@@ -50,7 +50,11 @@ class RestaurantDetailViewController: UIViewController {
         
         statusButton.layer.cornerRadius = 20.0
         cuisineButton.layer.cornerRadius = 20.0
-        
+    
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         contentView.layer.cornerRadius = 10.0
         contentView.clipsToBounds = true
         
@@ -61,14 +65,6 @@ class RestaurantDetailViewController: UIViewController {
         subView.layer.shadowRadius = 10
         let shadowPath = UIBezierPath(rect: subView.bounds)
         subView.layer.shadowPath = shadowPath.cgPath
-        
-  
- 
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
      
         
         
