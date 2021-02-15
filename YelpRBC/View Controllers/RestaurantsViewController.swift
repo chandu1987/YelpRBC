@@ -160,13 +160,14 @@ extension RestaurantsViewController:UISearchBarDelegate{
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+               DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                   searchBar.resignFirstResponder()
+               }
+        }
         restaurantsViewModel.searchForRestaurant(restaurant: searchBar.text ?? "")
     }
     
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-        searchBar.resignFirstResponder()
-    }
+
     
 }

@@ -19,7 +19,9 @@ class RestaurantCell: UICollectionViewCell {
         didSet{
             
             if let coverImage = restaurant?.imageURL{
-                restaurantImage.loadImage(at: URL(string: coverImage)!)
+                //Changed default Image sizes from yelp so that they fit well in the cell.
+                let changedUrl = coverImage.replacingOccurrences(of: "o.jpg", with: "ls.jpg")
+                restaurantImage.loadImage(at: URL(string: changedUrl)!)
             }
             
             restaurantName.text = restaurant?.name
