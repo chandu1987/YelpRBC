@@ -69,7 +69,7 @@ class RestaurantDetailViewModel:NSObject {
     }
     
     var phoneNumber:String{
-        return restaurantDetail.displayPhone
+        return restaurantDetail.displayPhone.count > 0 ? restaurantDetail.displayPhone : "No contact available"
     }
     
     //Closures
@@ -100,12 +100,9 @@ class RestaurantDetailViewModel:NSObject {
     
 
     func getPhotosCount() -> Int {
-        
-        
         guard restaurantDetail != nil else{
             return 0
         }
-        
         
         if let photos = restaurantDetail.photos{
             return photos.count

@@ -150,7 +150,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyB-e2-4kL">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="689"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="348s.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="qQO-Ug-Deb">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qQO-Ug-Deb">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="200"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="detailDishImage"/>
                                                         <constraints>
@@ -164,7 +164,7 @@
                                                             <constraint firstAttribute="height" constant="21" id="ccI-sE-3if"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" red="0.60392156860000001" green="0.52156862749999999" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C34-LX-0uE">
@@ -174,7 +174,7 @@
                                                             <constraint firstAttribute="height" constant="30" id="95q-qg-31C"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="30"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wcO-jy-MYK">
@@ -412,7 +412,6 @@
                         <outlet property="ratingLabel" destination="5fF-Aa-UZU" id="LzD-TM-OQJ"/>
                         <outlet property="restaurantImageView" destination="qQO-Ug-Deb" id="JzR-XK-A8L"/>
                         <outlet property="restaurantNameLabel" destination="C34-LX-0uE" id="q0Q-1h-blI"/>
-                        <outlet property="scrollView" destination="A4O-4g-GMT" id="xqF-af-tLG"/>
                         <outlet property="statusButton" destination="lzx-bh-5ZZ" id="k9j-aX-Yhb"/>
                         <outlet property="subView" destination="bRB-dp-Qza" id="Tyn-rg-kKl"/>
                     </connections>
@@ -446,7 +445,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="348s.jpg" width="348" height="348"/>
         <image name="ic_sort" width="22" height="22"/>
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <image name="phone" catalog="system" width="128" height="115"/>

@@ -25,7 +25,6 @@ class RestaurantDetailViewController: UIViewController {
     @IBOutlet weak var subView:UIView!
     @IBOutlet weak var contentView:UIView!
     @IBOutlet weak var photosCollectionView:UICollectionView!
-    @IBOutlet weak var scrollView:UIScrollView!
 
 
     required init?(coder: NSCoder) {
@@ -52,6 +51,7 @@ class RestaurantDetailViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        //Add layer related properties
         contentView.layer.cornerRadius = 10.0
         contentView.clipsToBounds = true
         subView.layer.masksToBounds = false
@@ -65,6 +65,7 @@ class RestaurantDetailViewController: UIViewController {
     
     
     func getRestaurantDetail(){
+        //get the details related to the restaurant and show them.
         self.restaurantDetailViewModel.getrestaurantsDetailClosure = {[weak self] in
             DispatchQueue.main.async {
                 self?.updateUI()
@@ -74,6 +75,7 @@ class RestaurantDetailViewController: UIViewController {
     
     
     func updateUI(){
+        //update the ui once restaurant detail is received
         restaurantImageView.loadImage(at: self.restaurantDetailViewModel.imageUrl)
         ratingLabel.text = self.restaurantDetailViewModel.rating
         restaurantNameLabel.text = self.restaurantDetailViewModel.title
@@ -104,8 +106,9 @@ extension RestaurantDetailViewController:UICollectionViewDelegate, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //self.performSegue(withIdentifier: Constants.Segues.kShowRestaurantDetailSegue, sender: indexPath.item)
+        self.showErrorWithMessage(message: "Feature not implemented :)")
     }
+
 }
 
 
@@ -113,6 +116,10 @@ extension RestaurantDetailViewController:UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 128, height: 128)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 2
     }
     
 }
